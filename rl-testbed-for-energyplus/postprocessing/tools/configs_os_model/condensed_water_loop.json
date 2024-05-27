@@ -1,0 +1,40 @@
+{
+    "plot_title": "Condensed water loop",
+    "subplot_titles": ["Pressure [Pa]", "Temperature [$^\\circ C$]", "Mass flow [kg/s]","Power [W]"],
+    "legend_labels": [[
+        "$p_{condenser,out}$",
+        "$p_{chiller,out}$",
+        "$p_{pump,out}$"
+    ],[
+        "$T_{condenser,out}$",
+        "$T_{chiller,out}$",
+        "$T_{pump,out}$",
+        "$T_{outdoor}$"
+    ],[
+        "$\\dot{m}_{condenser,out}$",
+        "$\\dot{m}_{chiller,out}$",
+        "$\\dot{m}_{pump,out}$"
+    ],[
+        "$P_{chiller}$",
+        "$P_{pump}$",
+        "$P_{cooling tower}$"        
+    ]],
+    "column_lists": [[
+        "NODE 47:System Node Pressure [Pa](TimeStep)",
+        "NODE 57:System Node Pressure [Pa](TimeStep)",
+        "NODE 48:System Node Pressure [Pa](TimeStep)"
+    ],[
+        "NODE 47:System Node Temperature [C](TimeStep)",
+        "NODE 57:System Node Temperature [C](TimeStep)",
+        "NODE 48:System Node Temperature [C](TimeStep)",
+        "Environment:Site Outdoor Air Wetbulb Temperature [C](TimeStep)"
+    ],[
+        "NODE 47:System Node Mass Flow Rate [kg/s](TimeStep)",
+        "NODE 57:System Node Mass Flow Rate [kg/s](TimeStep)",
+        "NODE 48:System Node Mass Flow Rate [kg/s](TimeStep)"
+    ],[
+        "CHILLER ELECTRIC EIR 1:Chiller Electricity Rate [W](TimeStep)",
+        "PUMP VARIABLE SPEED 3:Pump Electricity Rate [W](TimeStep)",
+        "COOLING TOWER SINGLE SPEED 1:Cooling Tower Fan Electricity Rate [W](TimeStep)"
+    ]]
+}

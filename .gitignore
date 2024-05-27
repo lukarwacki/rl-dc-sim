@@ -1,0 +1,9 @@
+rl-testbed-for-energyplus/logging/
+rl-testbed-for-energyplus/Z_archive/
+rl-testbed-for-energyplus/analysis/
+rl-testbed-for-energyplus/postprocessing/analysis/
+Practice/
+*2ZoneDataCenterHVAC*.idf
+*.png
+EnergyPlus/
+tmp/

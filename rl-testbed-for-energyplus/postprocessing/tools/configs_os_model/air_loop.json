@@ -1,0 +1,48 @@
+{
+    "plot_title": "Air Loop",
+    "subplot_titles": ["Pressure [Pa]", "Temperature [$^\\circ C$]", "Mass flow [kg/s]","Power [W]"],
+    "legend_labels": [
+        [
+            "$p_{fan,out}$",
+            "$p_{diffuser,out}$",
+            "$p_{zone,out}$",
+            "$p_{coil,out}$",
+            "$p_{humidifier,out}$"
+        ],[
+            "$T_{fan,out}$",
+            "$T_{zone,out}$",
+            "$T_{coil,out}$"
+        ],[
+            "$\\dot m_{fan,out}$",
+            "$\\dot m_{diffuser,out}$",
+            "$\\dot m_{zone,out}$",
+            "$\\dot m_{coil,out}$",
+            "$\\dot m_{humidifier,out}$"
+        ],[
+            "$P_{fan}$",
+            "$P_{humidifier}$"
+        ]
+    ],
+    "column_lists": [
+        [
+            "COMPUTERROOM ZN CRAC SUPPLY OUTLET NODE:System Node Pressure [Pa](TimeStep)",
+            "COMPUTERROOM ZN CRAC DIFFUSER OUTLET AIR NODE:System Node Pressure [Pa](TimeStep)",
+            "COMPUTERROOM ZN RETURN AIR NODE:System Node Pressure [Pa](TimeStep)",
+            "NODE 62:System Node Pressure [Pa](TimeStep)",
+            "COMPUTERROOM ZN CRAC ELECTRIC STEAM HUMIDIFIER OUTLET AIR NODE:System Node Pressure [Pa](TimeStep)"
+        ],[
+            "COMPUTERROOM ZN CRAC SUPPLY OUTLET NODE:System Node Temperature [C](TimeStep)",
+            "COMPUTERROOM ZN RETURN AIR NODE:System Node Temperature [C](TimeStep)",
+            "NODE 62:System Node Temperature [C](TimeStep)"
+        ],[
+            "COMPUTERROOM ZN CRAC SUPPLY OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "COMPUTERROOM ZN CRAC DIFFUSER OUTLET AIR NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "COMPUTERROOM ZN RETURN AIR NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "NODE 62:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "COMPUTERROOM ZN CRAC ELECTRIC STEAM HUMIDIFIER OUTLET AIR NODE:System Node Mass Flow Rate [kg/s](TimeStep)"
+        ],[
+            "COMPUTERROOM ZN CRAC FAN:Fan Electricity Rate [W](TimeStep)",
+            "COMPUTERROOM ZN CRAC ELECTRIC STEAM HUMIDIFIER:Humidifier Electricity Rate [W](TimeStep)"
+        ]
+    ]
+}

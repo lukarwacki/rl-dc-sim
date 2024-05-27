@@ -1,0 +1,60 @@
+{
+    "plot_title": "Action variables and disturbances",
+    "subplot_titles": ["HVAC Temperatures, $T$ [$^\\circ C$]", "IT Load [W]", "Outdoor Temperature, $T$ [[$^\\circ C$]", "Reward [W]", "Mass flow, $\\dot m$ [kg/s]","HVAC Component power [W]"],
+    "legend_labels": [
+        [
+            "$T_{chilled water,SP}$",
+            "$T_{air,CC,out}$",
+            "$T_{air,Zone,out}$"
+        ],[
+            "$P_{ITE,tot}$",
+            "$P_{ITE,CPU}$",
+            "$P_{ITE,Fan}$",
+            "$P_{ITE,UPS}$"
+        ],[
+            "$T_{outdoor}$"
+        ],[
+            "Cost (or -Reward)",
+            "$P_{HVAC, tot}$"
+        ],[
+            "$\\dot m_{chiller loop}$",
+            "$\\dot m_{air loop}$"
+        ],[
+            "$P_{HVAC,tot}$",
+            "$P_{cooling tower}$",
+            "$P_{condenser pump}$",
+            "$P_{chiller}$",
+            "$P_{chiller pump}$",
+            "$P_{humidifier}$",
+            "$P_{CRAC fan}$"
+        ]
+    ],
+    "column_lists": [
+        [   
+            "CHILLED WATER LOOP SUPPLY OUTLET NODE:System Node Setpoint Temperature [C](TimeStep)",
+            "COMPUTERROOM ZN CRAC SUPPLY OUTLET NODE:System Node Temperature [C](TimeStep)",
+            "COMPUTERROOM ZN RETURN AIR NODE:System Node Temperature [C](TimeStep)"
+        ],[
+            "Total ITE Load",
+            "SMALLDATACENTERHIGHITE COMPUTERROOM IT EQUIPMENT 1:ITE CPU Electricity Rate [W](TimeStep)",
+            "SMALLDATACENTERHIGHITE COMPUTERROOM IT EQUIPMENT 1:ITE Fan Electricity Rate [W](TimeStep)",
+            "SMALLDATACENTERHIGHITE COMPUTERROOM IT EQUIPMENT 1:ITE UPS Electricity Rate [W](TimeStep)"
+        ],[
+            "Environment:Site Outdoor Air Wetbulb Temperature [C](TimeStep)"
+        ],[
+            "Reward",
+            "Total HVAC Power"
+        ],[
+            "CHILLED WATER LOOP CHILLER OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "AIR LOOP CC OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)"
+        ],[
+            "Total HVAC Power", 
+            "COOLING TOWER SINGLE SPEED 1:Cooling Tower Fan Electricity Rate [W](TimeStep)",
+            "CONDENSER WATER LOOP PUMP:Pump Electricity Rate [W](TimeStep)",
+            "CHILLER ELECTRIC EIR 1:Chiller Electricity Rate [W](TimeStep)",
+            "CHILLED WATER LOOP PUMP:Pump Electricity Rate [W](TimeStep)",
+            "COMPUTERROOM ZN CRAC ELECTRIC STEAM HUMIDIFIER:Humidifier Electricity Rate [W](TimeStep)",
+            "COMPUTERROOM ZN CRAC FAN:Fan Electricity Rate [W](TimeStep)"
+        ]
+    ]
+}

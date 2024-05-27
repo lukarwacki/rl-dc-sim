@@ -1,0 +1,65 @@
+{
+    "plot_title": "Action variables and disturbances",
+    "subplot_titles": ["Mass flow, $\\dot m$ [kg/s]", "Temperature, $T$ [$^\\circ C$]", "HVAC Powe","IT Load [W]","PUE [-]"],
+    "legend_labels": [
+        [
+            "$\\dot m_{chiller loop}$",
+            "$\\dot m_{air loop}$"
+        ],[
+            "$T_{outdoor}$",
+            "$T_{chilled water,SP}$"
+        ],[
+            "$P_{HVAC, tot}$",
+            "$P_{cooling tower}$",
+            "$P_{condenser pump}$",
+            "$P_{chiller}$",
+            "$P_{chiller pump}$",
+            "$P_{humidifier}$",
+            "$P_{CRAC fan}$"
+            
+        ],[
+            "$P_{ITE,tot}$",
+            "$P_{ITE,CPU}$",
+            "$P_{ITE,Fan}$",
+            "$P_{ITE,UPS}$"
+        ],[
+            "PUE",
+            "$PUE_{Cooling Tower}$",
+            "$PUE_{Condenser Pump}$",
+            "$PUE_{Chiller}$",
+            "$PUE_{Chiller Pump}$",
+            "$PUE_{Humidifier}$",
+            "$PUE_{CRAC Fan}$"
+        ]
+    ],
+    "column_lists": [
+        [
+            "NODE 29:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "NODE 62:System Node Mass Flow Rate [kg/s](TimeStep)"
+        ],[
+            "Environment:Site Outdoor Air Wetbulb Temperature [C](TimeStep)",
+            "NODE 28:System Node Setpoint Temperature [C](TimeStep)"
+        ],[
+            "Total HVAC Power",
+            "COOLING TOWER SINGLE SPEED 1:Cooling Tower Fan Electricity Rate [W](TimeStep)",
+            "PUMP VARIABLE SPEED 3:Pump Electricity Rate [W](TimeStep)",
+            "CHILLER ELECTRIC EIR 1:Chiller Electricity Rate [W](TimeStep)",
+            "PUMP VARIABLE SPEED 2:Pump Electricity Rate [W](TimeStep)",
+            "COMPUTERROOM ZN CRAC ELECTRIC STEAM HUMIDIFIER:Humidifier Electricity Rate [W](TimeStep)",
+            "COMPUTERROOM ZN CRAC FAN:Fan Electricity Rate [W](TimeStep)"
+        ],[
+            "Total ITE Load",
+            "SMALLDATACENTERHIGHITE COMPUTERROOM IT EQUIPMENT 1:ITE CPU Electricity Rate [W](TimeStep)",
+            "SMALLDATACENTERHIGHITE COMPUTERROOM IT EQUIPMENT 1:ITE Fan Electricity Rate [W](TimeStep)",
+            "SMALLDATACENTERHIGHITE COMPUTERROOM IT EQUIPMENT 1:ITE UPS Electricity Rate [W](TimeStep)"
+        ],[
+            "PUE",
+            "PUE Cooling Tower",
+            "PUE Condenser Pump",
+            "PUE Chiller",
+            "PUE Chiller Pump",
+            "PUE Humidifier",
+            "PUE CRAC Fan"
+        ]
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "plot_title": "Condensed water loop",
+    "subplot_titles": ["Pressure [Pa]", "Temperature [$^\\circ C$]", "Mass flow [kg/s]","Power [W]"],
+    "legend_labels": [[
+        "$p_{CT,out}$",
+        "$p_{chiller,out}$",
+        "$p_{pump,out}$"
+    ],[
+        "$T_{CT,out}$",
+        "$T_{chiller,out}$",
+        "$T_{pump,out}$",
+        "$T_{outdoor}$"
+    ],[
+        "$\\dot{m}_{CT,out}$",
+        "$\\dot{m}_{chiller,out}$",
+        "$\\dot{m}_{pump,out}$"
+    ],[
+        "$P_{chiller}$",
+        "$P_{pump}$",
+        "$P_{cooling tower}$"        
+    ]],
+    "column_lists": [[
+        "CONDENSER WATER LOOP CT OUTLET NODE:System Node Pressure [Pa](TimeStep)",
+        "CONDENSER WATER LOOP CHILLER OUTLET NODE:System Node Pressure [Pa](TimeStep)",
+        "CONDENSER WATER LOOP PUMP OUTLET NODE:System Node Pressure [Pa](TimeStep)"
+    ],[
+        "CONDENSER WATER LOOP CT OUTLET NODE:System Node Temperature [C](TimeStep)",
+        "CONDENSER WATER LOOP CHILLER OUTLET NODE:System Node Temperature [C](TimeStep)",
+        "CONDENSER WATER LOOP PUMP OUTLET NODE:System Node Temperature [C](TimeStep)",
+        "Environment:Site Outdoor Air Wetbulb Temperature [C](TimeStep)"
+    ],[
+        "CONDENSER WATER LOOP CT OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+        "CONDENSER WATER LOOP CHILLER OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+        "CONDENSER WATER LOOP PUMP OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)"
+    ],[
+        "CHILLER ELECTRIC EIR 1:Chiller Electricity Rate [W](TimeStep)",
+        "CONDENSER WATER LOOP PUMP:Pump Electricity Rate [W](TimeStep)",
+        "COOLING TOWER SINGLE SPEED 1:Cooling Tower Fan Electricity Rate [W](TimeStep)"
+    ]]
+}

@@ -1,0 +1,42 @@
+{
+    "plot_title": "Action variables and disturbances",
+    "subplot_titles": ["HVAC Temperatures, $T$ [$^\\circ C$]", "IT Load [W]", "Mass flow [kg/s]", "HVAC Power [W]", "Outdoor Temperature, $T$ [$^\\circ C$]", "Reward"],
+    "legend_labels": [
+        [
+            "$T_{chilled water,SP}$",
+            "$T_{air,CC,out}$",
+            "$T_{air,Zone,out}$"
+        ],[
+            "$P_{ITE,tot}$"
+        ],[
+            "$\\dot{m}_{chiller}$",
+            "$\\dot{m}_{air}$"
+        ],[
+            "$P_{HVAC, tot}$",
+            "$P_{chiller}$"            
+        ],[
+            "$T_{outdoor}$"
+        ],[
+            "Reward"
+        ]
+    ],
+    "column_lists": [
+        [   
+            "CHILLED WATER LOOP SUPPLY OUTLET NODE:System Node Setpoint Temperature [C](TimeStep)",
+            "COMPUTERROOM ZN CRAC SUPPLY OUTLET NODE:System Node Temperature [C](TimeStep)",
+            "COMPUTERROOM ZN RETURN AIR NODE:System Node Temperature [C](TimeStep)"
+        ],[
+            "Total ITE Load"
+        ],[
+            "CHILLED WATER LOOP CHILLER OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "AIR LOOP CC OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)"
+        ],[
+            "Total HVAC Power",
+            "CHILLER ELECTRIC EIR 1:Chiller Electricity Rate [W](TimeStep)"
+        ],[
+            "Environment:Site Outdoor Air Wetbulb Temperature [C](TimeStep)"
+        ],[
+            "Reward"
+        ]
+    ]
+}

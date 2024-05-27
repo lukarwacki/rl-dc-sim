@@ -1,0 +1,40 @@
+{
+    "plot_title": "Chiller",
+    "subplot_titles": ["Temperature difference, $\\Delta T$ $[^\\circ C]$", "Temperature, $T [^\\circ C]$", "Mass flow, $\\dot m [kg/s]$", "Power [W]", "COP of the chiller","Chiller part load ratio"],
+    "legend_labels": [
+        [
+            "$\\Delta T_{condenser loop}$",
+            "$\\Delta T_{chiller loop}$"
+        ],[
+            "$T_{condenser loop,in}$",
+            "$T_{chiller loop,out}$"
+        ],[
+            "$\\dot m_{condenser loop}$",
+            "$\\dot m_{chiller loop}$"
+        ],[
+            "$P_{chiller}$"
+        ],[
+            "$COP_{chiller}$"
+        ],[
+            "$r_{PL}$"
+        ]
+    ],
+    "column_lists": [
+        [
+            "chiller_delta_T_condenser_loop",
+            "chiller_delta_T_chiller_loop"
+        ],[
+            "CONDENSER WATER LOOP CT OUTLET NODE:System Node Temperature [C](TimeStep)",
+            "CHILLED WATER LOOP CHILLER OUTLET NODE:System Node Temperature [C](TimeStep)"    
+        ],[
+            "CONDENSER WATER LOOP CT OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "CHILLED WATER LOOP CHILLER OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)"
+        ],[
+            "CHILLER ELECTRIC EIR 1:Chiller Electricity Rate [W](TimeStep)"
+        ],[
+            "CHILLER ELECTRIC EIR 1:Chiller COP [W/W](TimeStep)"
+        ],[
+            "CHILLER ELECTRIC EIR 1:Chiller Part Load Ratio [](TimeStep)"
+        ]
+    ]
+}

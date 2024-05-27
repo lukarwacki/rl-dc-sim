@@ -1,0 +1,47 @@
+# Specify the top directory
+TOP=/root/rl-testbed-for-energyplus
+export PYTHONPATH=${PYTHONPATH}:${TOP}
+
+if [ `uname` == "Darwin" ]; then   # If on macOS
+    energyplus_instdir="/Applications"
+else
+    energyplus_instdir="/usr/local"
+fi
+# deduce EnergyPlus version from its installation directory
+#ENERGYPLUS_VERSION="$(ls -d ${energyplus_instdir}/EnergyPlus* | cut -d'-' -f2-4)"
+ENERGYPLUS_VERSION="9-5-0"
+ENERGYPLUS_DIR="${energyplus_instdir}/EnergyPlus-${ENERGYPLUS_VERSION}"
+WEATHER_DIR="${TOP}/input_data/WeatherData"
+export ENERGYPLUS="${ENERGYPLUS_DIR}/energyplus"
+MODEL_DIR="${TOP}/input_data/model_files"
+export P_ITE_DIR="${TOP}/input_data/P_ITE_files"
+# Weather file.
+# Single weather file or multiple weather files separated by comma character.
+# export ENERGYPLUS_WEATHER="${WEATHER_DIR}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw"
+# export ENERGYPLUS_WEATHER="${WEATHER_DIR}/USA_CO_Golden-NREL.724666_TMY3.epw"
+# export ENERGYPLUS_WEATHER="${WEATHER_DIR}/USA_FL_Tampa.Intl.AP.722110_TMY3.epw"
+# export ENERGYPLUS_WEATHER="${WEATHER_DIR}/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
+# export ENERGYPLUS_WEATHER="${WEATHER_DIR}/USA_VA_Sterling-Washington.Dulles.Intl.AP.724030_TMY3.epw"
+# export ENERGYPLUS_WEATHER="${WEATHER_DIR}/USA_CA_San.Francisco.Intl.AP.724940_TMY3.epw,${WEATHER_DIR}/USA_CO_Golden-NREL.724666_TMY3.epw,${WEATHER_DIR}/USA_FL_Tampa.Intl.AP.722110_TMY3.epw"
+export ENERGYPLUS_WEATHER="${WEATHER_DIR}/Weather_amsterdam_2018.epw,${WEATHER_DIR}/Weather_amsterdam_2019.epw,${WEATHER_DIR}/Weather_amsterdam_2020.epw,${WEATHER_DIR}/Weather_amsterdam_2020.epw,${WEATHER_DIR}/Weather_amsterdam_2021.epw"
+# export ENERGYPLUS_WEATHER="${WEATHER_DIR}/Weather_amsterdam_2023.epw"
+# IT load file
+export ENERGYPLUS_IT_LOAD="${P_ITE_DIR}/IT_Load_0.csv,${P_ITE_DIR}/IT_Load_1.csv,${P_ITE_DIR}/IT_Load_2.csv,${P_ITE_DIR}/IT_Load_3.csv"
+# Ouput directory "openai-YYYY-MM-DD-HH-MM-SS-mmmmmm" is created in
+# the directory specified by ENERGYPLUS_LOGBASE or in the current directory if not specified.
+LOGBASE="${TOP}/output_data"
+export ENERGYPLUS_LOGBASE="${LOGBASE}/eplog"
+export TENSORBOARD_LOGBASE="${LOGBASE}/tblog"
+export OPTUNA_LOGBASE="${LOGBASE}/optunalog"
+# Model file. Uncomment one.
+# export ENERGYPLUS_MODEL="${MODEL_DIR}/RL_DC_ChillerTemp_AirTemp_ChillerMass_AirMass.idf"                # 1 Zone dc with all 4 action variables (for analysis of changing variables)
+export ENERGYPLUS_MODEL="${MODEL_DIR}/RL_DC_ChillerTemp_ChillerMass_AirMass.idf"                        # 1 Zone dc with all 3 action variables
+# export ENERGYPLUS_MODEL="${MODEL_DIR}/RL_DC_ChillerTemp_AirTemp.idf"                        # 1 Zone dc with 2 action variables (for baseline study)
+
+# Run command (example)
+# $ time python3 -m baselines_energyplus.trpo_mpi.run_energyplus --num-timesteps 1000000000
+# Monitoring (example)
+# $ python3 -m common.plot_energyplus
+
+# Export display
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0

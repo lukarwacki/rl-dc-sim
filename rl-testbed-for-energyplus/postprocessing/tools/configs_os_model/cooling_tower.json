@@ -1,0 +1,34 @@
+{
+    "plot_title": "Cooling tower",
+    "subplot_titles": ["$\\Delta T$", "$\\Delta T$, wate", "$r_{fan}$", "Power [W]"],
+    "legend_labels": [
+        [
+            "$(T_{cond,out}- T_{outdoor})$",
+            "$T_{setpoint} (T_{cond,out}- T_{outdoor})$",
+            "$(T_{cond,water,out} - T_{cond,water,in})$"
+        ],[
+            "$T_{water,in}$",
+            "$T_{water,out}$",
+            "$T_{outdoor}$" 
+        ],[
+            "$r_{fan}$"
+        ],[
+            "$P_{fan}$"
+        ]
+    ],
+    "column_lists": [
+        [
+            "diff_temp_CT_water_outlet_outdoor",
+            "diff_temp_CT_setpoint_outdoor",
+            "diff_temp_CT_water" 
+        ],[
+            "COOLING TOWER SINGLE SPEED 1:Cooling Tower Inlet Temperature [C](TimeStep)",
+            "COOLING TOWER SINGLE SPEED 1:Cooling Tower Outlet Temperature [C](TimeStep)",
+            "Environment:Site Outdoor Air Wetbulb Temperature [C](TimeStep)"  
+        ],[
+            "COOLING TOWER SINGLE SPEED 1:Cooling Tower Fan Cycling Ratio [](TimeStep)"
+        ],[
+            "COOLING TOWER SINGLE SPEED 1:Cooling Tower Fan Electricity Rate [W](TimeStep)"
+        ]
+    ]
+}

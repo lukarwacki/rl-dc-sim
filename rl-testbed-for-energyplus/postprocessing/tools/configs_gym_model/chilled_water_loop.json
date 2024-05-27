@@ -1,0 +1,42 @@
+{
+    "plot_title": "Chilled water loop",
+    "subplot_titles": ["Pressure [Pa]","Temperature [$\\circ C$]", "Mass flow [kg/s]","Power [W]"],
+    "legend_labels": [
+        [
+            "$p_{chiller,out}$",
+            "$p_{coil,out}$",
+            "$p_{pump,out}$"
+        ],[
+            
+            "$T_{chiller,out}$",
+            "$T_{coil,out}$",
+            "$T_{pump,out}$"
+        ],[
+            "$\\dot{m}_{chiller,out}$",
+            "$\\dot{m}_{coil,out}$",
+            "$\\dot{m}_{pump,out}$"
+        ],[
+            "$P_{chiller}$",
+            "$P_{pump}$"
+        ]
+    ],
+    "column_lists":[
+        [
+            "CHILLED WATER LOOP CHILLER OUTLET NODE:System Node Pressure [Pa](TimeStep)",
+            "CHILLED WATER LOOP CLGCOIL OUTLET NODE:System Node Pressure [Pa](TimeStep)",
+            "CHILLED WATER LOOP PUMP OUTLET NODE:System Node Pressure [Pa](TimeStep)"
+        ],[
+            "CHILLED WATER LOOP CHILLER OUTLET NODE:System Node Temperature [C](TimeStep)",
+            "CHILLED WATER LOOP CLGCOIL OUTLET NODE:System Node Temperature [C](TimeStep)",
+            "CHILLED WATER LOOP PUMP OUTLET NODE:System Node Temperature [C](TimeStep)"
+        ],[
+            "CHILLED WATER LOOP CHILLER OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "CHILLED WATER LOOP CLGCOIL OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)",
+            "CHILLED WATER LOOP PUMP OUTLET NODE:System Node Mass Flow Rate [kg/s](TimeStep)"
+        ],[
+            "CHILLER ELECTRIC EIR 1:Chiller Electricity Rate [W](TimeStep)",
+            "CHILLED WATER LOOP PUMP:Pump Electricity Rate [W](TimeStep)"
+        ]
+    ],
+    "figsize": "(12,8)"
+}
