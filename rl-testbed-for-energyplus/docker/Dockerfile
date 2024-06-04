@@ -11,7 +11,7 @@ ARG EPLUS_BUILD_PARALLELISM=4
 
 SHELL ["/bin/bash", "-c"]
 
-COPY ./EnergyPlus /root/patches/
+COPY ./energyplus_patches /root/patches/
 WORKDIR /root
 
 RUN apt-get update && apt-get install -y tzdata
