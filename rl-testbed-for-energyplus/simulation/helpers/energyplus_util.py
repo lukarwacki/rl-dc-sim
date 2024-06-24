@@ -6,7 +6,6 @@ import glob
 import shutil
 from typing import Any, ClassVar, Dict, Optional, Type, TypeVar, Union
 # following import necessary to register EnergyPlus-v0 env
-import simulation.gym_energyplus  # noqa
 
 
 def arg_parser():
@@ -163,4 +162,16 @@ def copy_file(log_dir, source_file):
         shutil.copy(source_file, destination_path)
         print(f"Copied '{file_name}' to '{log_dir}'.")
 
-        
+
+def overwrite_weather_file(log_dir, fn = "Weather_amsterdam_2022.epw"):
+    # Add weather file to the logging directory to override the standard weather files
+    weather_location = os.path.join(weather_files_dir(), fn)
+    copy_file(log_dir, weather_location)
+
+def overwrite_it_file(log_dir, fn = "IT_Load_4.csv"):
+    # Add IT load file to the logging directory to override the standard IT load files
+    it_load_dir = it_load_files_dir()
+    it_load_location = os.path.join(it_load_dir, fn)
+    copy_file(log_dir, it_load_location)
+    copied_it_load_filename = os.path.join(log_dir, fn)
+    shutil.move(copied_it_load_filename, os.path.join(log_dir, 'IT_load.csv'))

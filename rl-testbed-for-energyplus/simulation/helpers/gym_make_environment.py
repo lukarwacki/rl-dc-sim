@@ -5,21 +5,15 @@ from mpi4py import MPI
 import numpy as np
 import json
 
-from stable_baselines3 import PPO 
 from stable_baselines3.common import logger
-from stable_baselines3.common.env_checker import check_env
-from stable_baselines3.common.env_util import make_vec_env
 
 import gym
 import gym.wrappers
-from gym.envs.registration import register
 
 # Custom imports
-from simulation.gym_energyplus.envs import EnergyPlusEnv
 import simulation.helpers.gym_wrappers as custom_wrappers
 from simulation.helpers.gym_monitor import Monitor
 from simulation.helpers.energyplus_util import (
-    energyplus_arg_parser,
     energyplus_logbase_dir,
     tensorboard_logbase_dir,
     optuna_logbase_dir,
