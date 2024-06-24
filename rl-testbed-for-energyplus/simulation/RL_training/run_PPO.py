@@ -1,48 +1,15 @@
 # Imports
 import sys
-import os
-import shutil
 from stable_baselines3 import PPO 
-from stable_baselines3.common.evaluation import evaluate_policy
 
 # Custom imports
 from simulation.helpers.gym_make_environment import make_env
-from simulation.helpers.energyplus_util import energyplus_arg_parser, weather_files_dir, it_load_files_dir, copy_file
-from simulation.helpers.gym_monitor import LoggingCallback, WriteSettingsCallback, TensorBoardCallback
+from simulation.gym_energyplus.envs import EnergyPlusEnv # needed to register env.
+from simulation.helpers.energyplus_util import energyplus_arg_parser
+from simulation.helpers.run_common import train_agent, evaluate_agent
+
 
 # Function definitions
-def train_agent(env, args):
-    """
-    Train the PPO agent on the provided environment.
-
-    Args:
-        env: The environment to train the agent on.
-        args: Additional arguments for training.
-
-    Returns:
-        The trained agent.
-    """
-    # Define agent
-    agent = create_PPO(env, args)
-
-    # Define callbacks
-    callbacks = [WriteSettingsCallback(env, args)]
-    if args.log_actions_states:
-        callbacks.append(LoggingCallback(env.log_dir, args, env.ep_model.state_names))
-    if args.verbose_tb:
-        callbacks.append(TensorBoardCallback())
-    
-    # Train agent
-    ep_length = 52_848
-    num_episodes = args.num_episodes
-    num_timesteps = int(num_episodes * ep_length)
-    agent.learn(total_timesteps=num_timesteps, tb_log_name=env.log_name, callback=callbacks)
-    
-    # Save the model
-    agent.save(os.path.join(env.log_dir, 'agent'))
-    
-    return agent
-
 def create_PPO(env, args):
     """
     Create a PPO agent with the provided environment and hyperparameters.
@@ -95,44 +62,6 @@ def create_PPO(env, args):
     )
     return agent
 
-def evaluate_agent(agent, log_dir):
-    """
-    Evaluate the agent's performance on the environment.
-
-    Args:
-        agent (object): The RL agent to be evaluated.
-        log_dir (str): The directory where the evaluation results will be logged.
-
-    Returns:
-        tuple: A tuple containing the mean reward and standard deviation of the reward
-               for the evaluated episodes.
-    """
-    n_evals = 1     # Test for just one episode since the environment is the same anyways due to seeding
-    env = agent.get_env()
-
-    # Add weather file to the logging directory to override the standard weather files
-    weather_dir = weather_files_dir()
-    weather_filename = 'Weather_amsterdam_2022.epw'
-    weather_location = os.path.join(weather_dir, weather_filename)
-    copy_file(log_dir, weather_location)
-
-    # Add IT load file to the logging directory to override the standard IT load files
-    it_load_dir = it_load_files_dir()
-    it_load_filename = 'IT_Load_4.csv'
-    it_load_location = os.path.join(it_load_dir, it_load_filename)
-    copy_file(log_dir, it_load_location)
-    copied_it_load_filename = os.path.join(log_dir, it_load_filename)
-    shutil.move(copied_it_load_filename, os.path.join(log_dir, 'IT_load.csv'))
-
-    # Evaluate the policy
-    mean_rew, std_rew = evaluate_policy(model=agent, env=env, n_eval_episodes=n_evals)
-
-    # Print the results
-    print(f"The mean reward of the {n_evals} tested episodes is: {mean_rew}")
-    print(f"The std of the reward of {n_evals} tested episodes is: {std_rew}")
-
-    return mean_rew, std_rew
-
 def main():
     """
     This function handles the training of the PPO agent on the EnergyPlus environment. 
@@ -184,7 +113,7 @@ def main():
     env = make_env(args)
     
     # Train the agent
-    trained_agent = train_agent(env, args)
+    trained_agent = train_agent(env, args, create_PPO)
     
     # Evaluate the agent
     if args.evaluate_agent:
