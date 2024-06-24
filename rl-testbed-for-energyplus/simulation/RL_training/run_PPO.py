@@ -1,23 +1,14 @@
 # Imports
 import sys
 import os
-import time
-import datetime
 import shutil
-from mpi4py import MPI
-import gym
-from gym.envs.registration import register
 from stable_baselines3 import PPO 
-from stable_baselines3.common import logger
 from stable_baselines3.common.evaluation import evaluate_policy
-from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv
 
 # Custom imports
 from simulation.helpers.gym_make_environment import make_env
-from simulation.helpers.energyplus_util import energyplus_arg_parser, energyplus_logbase_dir, weather_files_dir, it_load_files_dir, copy_file
-from simulation.gym_energyplus.envs import EnergyPlusEnv
-from simulation.helpers.gym_monitor import Monitor, LoggingCallback, WriteSettingsCallback, TensorBoardCallback
-from postprocessing.tools.episode_visualization import run_gui
+from simulation.helpers.energyplus_util import energyplus_arg_parser, weather_files_dir, it_load_files_dir, copy_file
+from simulation.helpers.gym_monitor import LoggingCallback, WriteSettingsCallback, TensorBoardCallback
 
 # Function definitions
 def train_agent(env, args):
