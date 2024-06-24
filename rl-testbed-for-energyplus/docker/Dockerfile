@@ -62,6 +62,9 @@ COPY --from=eplus-build \
      /usr/local/EnergyPlus-${EPLUS_VERSION} \
      /usr/local/EnergyPlus-${EPLUS_VERSION}
 
+# for jupyter
+EXPOSE 8888 
+
 RUN export EPLUS_INSTALL_PATH=/usr/local/EnergyPlus-${EPLUS_VERSION} && \
     # setup important symbolic links for EnergyPlus (they are not preserved from stage 1)
     ln -s ${EPLUS_INSTALL_PATH}/energyplus /usr/local/bin/energyplus && \
@@ -71,6 +74,7 @@ RUN export EPLUS_INSTALL_PATH=/usr/local/EnergyPlus-${EPLUS_VERSION} && \
     # install python dependencies
     apt-get update && apt-get install -y locales python3-pip python3-mpi4py python3-tk git libgl1-mesa-glx libglib2.0-0 vim && \
     pip3 install -U pip && \
+    pip3 install jupyter && \
     # Install torch version that supports CPU only to reduce image size
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && \
     pip3 install -r /root/rl-testbed-for-energyplus/requirements.txt && \
