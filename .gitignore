@@ -7,3 +7,5 @@ Practice/
 *.png
 EnergyPlus/
 tmp/
+data/*
+*/output_data/*

@@ -1,6 +1,6 @@
 # Imports
 import sys
-from stable_baselines3 import PPO 
+from stable_baselines3 import A2C
 
 # Custom imports
 from simulation.helpers.gym_make_environment import make_env
@@ -10,16 +10,16 @@ from simulation.helpers.run_common import train_agent, evaluate_agent
 
 
 # Function definitions
-def create_PPO(env, args):
+def create_A2C(env, args):
     """
-    Create a PPO agent with the provided environment and hyperparameters.
+    Create a A2C agent with the provided environment and hyperparameters.
 
     Parameters:
         env (gym.Env): The environment to train the agent on.
         args (argparse.Namespace): The command-line arguments containing hyperparameters.
 
     Returns:
-        PPO: The created PPO agent.
+        A2C: The created A2C agent.
     """
     # Check if schedules are used 
     if args.learning_rate_schedule == 'constant':
@@ -28,16 +28,9 @@ def create_PPO(env, args):
         learning_rate = lambda f: f * args.learning_rate
     else:
         raise ValueError(f"Invalid learning rate schedule: {args.learning_rate_schedule}, should be either 'constant' or 'linear'")
-    
-    if args.clip_range_schedule == 'constant':
-        clip_range = args.clip_range
-    elif args.clip_range_schedule == 'linear':
-        clip_range = lambda f: f * args.clip_range
-    else:
-        raise ValueError(f"Invalid clip range schedule: {args.clip_range_schedule}, should be either 'constant' or 'linear'")
 
     # Define the agent
-    agent = PPO(
+    agent = A2C(
         # General
         env=env,
         verbose=1,
@@ -48,17 +41,14 @@ def create_PPO(env, args):
         policy=args.policy,
         learning_rate=learning_rate,
         policy_kwargs=args.policy_kwargs,
-        n_epochs=args.n_epochs,
         # RL related
         gamma=args.gamma,
-        clip_range=clip_range,
-        clip_range_vf=args.clip_range_vf,
-        target_kl=args.KL_target,
         n_steps=args.n_steps,
-        batch_size=args.mini_batch_size,
         gae_lambda=args.GAE_lambda,
         ent_coef=args.ent_coef,
-        vf_coef=args.vf_coef
+        vf_coef=args.vf_coef,
+        use_rms_prop = True,
+        use_sde = True
     )
     return agent
 
@@ -81,17 +71,15 @@ def main():
     args.learning_rate = 0.0007909848317679657      # Learning rate of the NNs in the PPO
     args.learning_rate_schedule = 'linear'          # Learning rate schedule over the training iterations
     args.n_steps = 512                              # Number of steps to collect samples for each training iteration
-    args.mini_batch_size = 48                       # Size of the mini-batch for each training iteration of the NNs
-    args.n_epochs = 25                              # Number of epochs to train the NNs for each training iteration
     args.gamma = 0.8525366263101639                 # Discount factor
     args.GAE_lambda = 0.9946797892895495            # Factor for the Generalized Advantage Estimation
-    args.clip_range = 0.4487117411242193            # Clipping range for the PPO
-    args.clip_range_schedule = 'linear'             # Clipping range schedule over the training iterations
-    args.clip_range_vf = None                       # Clipping range for the value function (StableBaselines specific PPO factor)
-    args.KL_target = 0.1                            # Target for the Kullback-Leibler divergence approximation 
-    args.policy_kwargs = dict(net_arch=dict(pi=[28],vf=[18]))   # Architecture of the NNs in the PPO
-    args.ent_coef = 0.006501481643366731            # Entropy coefficient for the PPO
-    args.vf_coef = 0.7478320995825463               # Value function coefficient for the PPO
+    args.policy_kwargs = dict(net_arch=dict(pi=[28],vf=[18]))   # Architecture of the NNs 
+    args.ent_coef = 0.006501481643366731            # Entropy coefficient
+    args.vf_coef = 0.7478320995825463               # Value function coefficient 
+
+    args.use_rms_prop = True
+    args.use_sde = True
+
 
     # Reward settings
     args.use_reward_file = True                     # True if reward settings are defined here, False if reward settings are hardcoded in the environment (old version)
@@ -113,7 +101,7 @@ def main():
     env = make_env(args)
     
     # Train the agent
-    trained_agent = train_agent(env, args, create_PPO)
+    trained_agent = train_agent(env, args, create_A2C)
     
     # Evaluate the agent
     if args.evaluate_agent:
