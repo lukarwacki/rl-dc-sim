@@ -52,7 +52,7 @@ For analysis you may find running a jupyter notebook within the docker container
 The dockerfile exposes port 8888, but you need to link your host port with the docker port when you run the container:
 
 ```shell
-docker run -t -i -v /path/to/project:/root/my-project rl-testbed-for-energyplus
+docker run -p 8888:8888 -t -i -v /path/to/project:/root/my-project rl-testbed-for-energyplus
 ```
 
 Once you are inside your docker, run the following: 
