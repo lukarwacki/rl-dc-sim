@@ -300,7 +300,12 @@ class TensorBoardCallback(BaseCallback):
         return True
 
     def _on_rollout_end(self) -> None:
-        actions = self.model.rollout_buffer.actions  # Get all actions in the rollout buffer
+
+        if self.model.replay_buffer:                    # Get all actions in the rollout/replay buffer
+            actions = self.model.replay_buffer.actions  # for off-policy algos (SAC)
+        else: 
+            actions = self.model.rollout_buffer.actions # for on-policy algos (PPO, A2C, etc.)
+
         upper_action_count = np.sum(actions >= 1, axis=0) # Count occurrences of lower limit action (-1)
         lower_action_count = np.sum(actions <= -1, axis=0)  # Count occurrences of lower limit action (-1)
         total_actions = len(actions)
@@ -319,7 +324,7 @@ class TensorBoardCallback(BaseCallback):
 
 def test_monitor():
     env = gym.make("CartPole-v1")
-    env.reset(seed=0)
+    env.reset()
     mon_file = "/tmp/baselines-test-%s.monitor.csv" % uuid.uuid4()
     menv = Monitor(env, mon_file)
     menv.reset()
