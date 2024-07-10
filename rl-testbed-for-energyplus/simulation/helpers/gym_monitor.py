@@ -300,20 +300,11 @@ class TensorBoardCallback(BaseCallback):
         return True
 
     def _on_rollout_end(self) -> None:
-<<<<<<< HEAD
-
-        if self.model.replay_buffer:                    # Get all actions in the rollout/replay buffer
-            actions = self.model.replay_buffer.actions  # for off-policy algos (SAC)
-        else: 
-            actions = self.model.rollout_buffer.actions # for on-policy algos (PPO, A2C, etc.)
-=======
-         # Get all actions in the rollout/replay buffer 
+        # Get all actions in the rollout/replay buffer 
         try:
-            actions = self.model.rollout_buffer.actions
+            actions = self.model.rollout_buffer.actions     # for on-policy algorithms (PPO, A2C)
         except AttributeError:
-            actions = self.model.replay_buffer.actions
-        
->>>>>>> 71102f0 (Modified to allow for off-policy and on-policy algorithms)
+            actions = self.model.replay_buffer.actions      # for off-policy algorithms (SAC)
 
         upper_action_count = np.sum(actions >= 1, axis=0) # Count occurrences of lower limit action (-1)
         lower_action_count = np.sum(actions <= -1, axis=0)  # Count occurrences of lower limit action (-1)
