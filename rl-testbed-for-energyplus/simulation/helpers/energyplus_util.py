@@ -65,6 +65,7 @@ def energyplus_arg_parser():
     parser.add_argument('--GAE_lambda', help='Factor for trade-off of bias vs variance for Generalized Advantage Estimator', type=float, default=0.95)
     parser.add_argument('--ent_coef', help='The entropy coefficient for the loss calculation', type=float, default=0.0)
     parser.add_argument('--vf_coef', help='The value function coefficient for the loss calculation', type=float, default=0.5)
+    parser.add_argument('--tau', help='Polyak smoothing parameter for off-policy algorithms', type=float, default=0.005)
     
     # Reward settings
     parser.add_argument('--use_reward_file', help='If a reward file should be used', type=bool, default=False)
